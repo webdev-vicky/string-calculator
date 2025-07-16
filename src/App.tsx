@@ -80,7 +80,7 @@ function App() {
 
             {error && (
                 <div className="mt-6 p-4 bg-red-100 text-red-800 rounded-md shadow-inner text-center font-semibold text-lg">
-                    Error: <span className="text-red-900">{error}</span>
+                    <span className="text-red-900">Error: {error}</span>
                 </div>
             )}
         <div className="mt-8 text-gray-600 text-sm text-center">
