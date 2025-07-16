@@ -7,6 +7,10 @@ function App() {
     const [result, setResult] = useState(null);
     const [error, setError] = useState('');
 
+    const handleCalculate = () => {
+
+    }
+
 
     return (
         // Tailwind CSS classes for responsive layout and styling
@@ -15,6 +19,12 @@ function App() {
         <div className="mb-4">
          <InputBox value={numbersInput} onChange={setNumbersInput}/>
         </div>
+            <button
+                onClick={handleCalculate}
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 transition duration-200 ease-in-out transform hover:scale-105 shadow-md"
+            >
+                Calculate Sum
+            </button>
             {result !== null && (
                 <div className="mt-6 p-4 bg-green-100 text-green-800 rounded-md shadow-inner text-center font-semibold text-lg">
                     Result: <span className="text-green-900">{result}</span>
