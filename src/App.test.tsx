@@ -58,4 +58,15 @@ describe('StringCalculator add function', () => {
     fireEvent.click(calculateButton);
     expect(screen.getByText(/result: 3/i)).toBeInTheDocument();
   });
+
+
+  test('should throw an exception for a single negative number', () => {
+    render(<App />);
+    const input = screen.getByTestId('numbersInput');
+    const calculateButton = screen.getByRole('button', {name: /calculate sum/i});
+
+    fireEvent.change(input, { target: { value: '1,-2,3' } });
+    fireEvent.click(calculateButton);
+    expect(screen.getByText(/Error: Negative numbers not allowed: -2/i)).toBeInTheDocument();
+  });
 });
