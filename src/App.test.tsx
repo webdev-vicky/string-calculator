@@ -16,7 +16,7 @@ describe('StringCalculator add function', () => {
 
     fireEvent.change(input, {target: {value: ''}});
     fireEvent.click(calculateButton);
-    expect(screen.getByText(/Result: 0/i)).toBeInTheDocument();
+    expect(screen.getByText(/result: 0/i)).toBeInTheDocument();
   });
 
   test('should return the number itself for a single number string', () => {
@@ -35,6 +35,16 @@ describe('StringCalculator add function', () => {
     const calculateButton = screen.getByRole('button', {name: /calculate sum/i});
 
     fireEvent.change(input, { target: { value: '1,5' } });
+    fireEvent.click(calculateButton);
+    expect(screen.getByText(/result: 6/i)).toBeInTheDocument();
+  });
+
+  test('should return the sum of multiple numbers separated by commas', () => {
+    render(<App />);
+    const input = screen.getByTestId('numbersInput');
+    const calculateButton = screen.getByRole('button', {name: /calculate sum/i});
+
+    fireEvent.change(input, { target: { value: '1\n2,3' } });
     fireEvent.click(calculateButton);
     expect(screen.getByText(/result: 6/i)).toBeInTheDocument();
   });

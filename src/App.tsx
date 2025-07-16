@@ -11,7 +11,7 @@ function App() {
         if (numbers === '') {
             return 0;
         }
-        const numberStrings = numbers.split(',');
+        const numberStrings = numbers.split(/[,\n]/);
         let sum = 0;
         for (const numStr of numberStrings) {
             sum += parseInt(numStr, 10);
