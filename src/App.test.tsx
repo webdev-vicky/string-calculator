@@ -28,4 +28,14 @@ describe('StringCalculator add function', () => {
     fireEvent.click(calculateButton);
     expect(screen.getByText(/result: 1/i)).toBeInTheDocument();
   });
+
+  test('should return the sum of two numbers separated by a comma', () => {
+    render(<App />);
+    const input = screen.getByTestId('numbersInput');
+    const calculateButton = screen.getByRole('button', {name: /calculate sum/i});
+
+    fireEvent.change(input, { target: { value: '1,5' } });
+    fireEvent.click(calculateButton);
+    expect(screen.getByText(/result: 6/i)).toBeInTheDocument();
+  });
 });
