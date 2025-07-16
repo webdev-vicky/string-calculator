@@ -11,10 +11,31 @@ function App() {
         if (numbers === '') {
             return 0;
         }
-        const numberStrings = numbers.split(/[,\n]/);
+        let delimiter = /[,\n]/; // Default delimiters: comma or newline
+        let numbersToParse = numbers;
+
+        // Step 6: Support different delimiters - GREEN
+        // Check if a custom delimiter is specified at the beginning of the string
+        if (numbers.startsWith('//')) {
+            const delimiterEndIndex = numbers.indexOf('\n');
+            if (delimiterEndIndex !== -1) {
+                // Extract the custom delimiter from between // and \n
+                const customDelimiter = numbers.substring(2, delimiterEndIndex);
+                // Escape special characters in the custom delimiter for regex
+                // This is crucial if the custom delimiter contains regex special characters (e.g., '*', '+', '?', etc.)
+                delimiter = new RegExp(customDelimiter.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'));
+                // The rest of the string is the numbers to parse
+                numbersToParse = numbers.substring(delimiterEndIndex + 1);
+            }
+        }
+
+        const numberStrings = numbersToParse.split(delimiter);
         let sum = 0;
         for (const numStr of numberStrings) {
-            sum += parseInt(numStr, 10);
+            const number = parseInt(numStr, 10);
+            if (!isNaN(number)) {
+                sum += number;
+            }
         }
         return sum;
     }, []);
