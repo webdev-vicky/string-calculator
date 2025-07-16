@@ -1,15 +1,30 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 import './App.css';
 import InputBox from "./components/InputBox";
 
 function App() {
     const [numbersInput, setNumbersInput] = useState('');
-    const [result, setResult] = useState(null);
+    const [result, setResult] = useState<any>(null);
     const [error, setError] = useState('');
 
-    const handleCalculate = () => {
+    const add = useCallback((numbers: any): number => {
+        // Step 1: Handle empty string - GREEN
+        if (numbers === '') {
+            return 0;
+        }
+        return 0; // Still a placeholder for other cases
+    }, []);
 
-    }
+    const handleCalculate = () => {
+        try {
+            setError('');
+            setResult(null);
+            const calculatedSum = add(numbersInput);
+            setResult(calculatedSum);
+        } catch (err: any) {
+            setError(err.message);
+        }
+    };
 
 
     return (
@@ -27,7 +42,7 @@ function App() {
             </button>
             {result !== null && (
                 <div className="mt-6 p-4 bg-green-100 text-green-800 rounded-md shadow-inner text-center font-semibold text-lg">
-                    Result: <span className="text-green-900">{result}</span>
+                    <span className="text-green-900">Result: {result}</span>
                 </div>
             )}
 

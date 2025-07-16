@@ -10,6 +10,7 @@ const InputBox = ({value, onChange}: Props) => {
             </label>
             <textarea
                 id="numbersInput"
+                data-testid="numbersInput"
                 className="shadow-sm appearance-none border rounded-md w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out"
                 placeholder="e.g., 1,2,3 or 1\n2,3 or //;\n1;2"
                 value={value}
