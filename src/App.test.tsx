@@ -18,4 +18,14 @@ describe('StringCalculator add function', () => {
     fireEvent.click(calculateButton);
     expect(screen.getByText(/Result: 0/i)).toBeInTheDocument();
   });
+
+  test('should return the number itself for a single number string', () => {
+    render(<App />);
+    const input = screen.getByTestId('numbersInput');
+    const calculateButton = screen.getByRole('button', {name: /calculate sum/i});
+
+    fireEvent.change(input, { target: { value: '1' } });
+    fireEvent.click(calculateButton);
+    expect(screen.getByText(/result: 1/i)).toBeInTheDocument();
+  });
 });

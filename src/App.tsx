@@ -8,11 +8,10 @@ function App() {
     const [error, setError] = useState('');
 
     const add = useCallback((numbers: any): number => {
-        // Step 1: Handle empty string - GREEN
         if (numbers === '') {
             return 0;
         }
-        return 0; // Still a placeholder for other cases
+        return parseInt(numbers, 10);
     }, []);
 
     const handleCalculate = () => {
