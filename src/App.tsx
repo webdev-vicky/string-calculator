@@ -4,6 +4,10 @@ import InputBox from "./components/InputBox";
 
 function App() {
     const [numbersInput, setNumbersInput] = useState('');
+    const [result, setResult] = useState(null);
+    const [error, setError] = useState('');
+
+
     return (
         // Tailwind CSS classes for responsive layout and styling
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4 font-inter">
@@ -11,6 +15,17 @@ function App() {
         <div className="mb-4">
          <InputBox value={numbersInput} onChange={setNumbersInput}/>
         </div>
+            {result !== null && (
+                <div className="mt-6 p-4 bg-green-100 text-green-800 rounded-md shadow-inner text-center font-semibold text-lg">
+                    Result: <span className="text-green-900">{result}</span>
+                </div>
+            )}
+
+            {error && (
+                <div className="mt-6 p-4 bg-red-100 text-red-800 rounded-md shadow-inner text-center font-semibold text-lg">
+                    Error: <span className="text-red-900">{error}</span>
+                </div>
+            )}
         <div className="mt-8 text-gray-600 text-sm text-center">
             <p className="font-semibold mb-2">Examples:</p>
             <ul className="list-disc list-inside text-left mx-auto max-w-xs">
